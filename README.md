@@ -14,4 +14,7 @@ To read smart contract data:
 
 ```
 node near.js
+node server.js
 ```
+
+Go to localhost:3000/artworks
