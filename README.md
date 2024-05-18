@@ -18,3 +18,5 @@ node server.js
 ```
 
 Go to localhost:3000/artworks
+
+Deployed at https://hello-near-examples.onrender.com/artworks
