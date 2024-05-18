@@ -289,7 +289,7 @@ mod tests {
         let contract = Contract::new();
 
         let artworks = contract.get_artworks();
-        assert_eq!(artworks.len(), 14);
+        assert_eq!(artworks.len(), 16);
 
         // Check first artwork
         assert_eq!(artworks[0].0, "Mona Lisa");
