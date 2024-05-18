@@ -27,6 +27,9 @@ cargo near create-dev-account
 # Deploy the contract on it
 cargo near deploy delirious-whip.testnet
 ```
+https://testnet.nearblocks.io/address/delirious-whip.testnet
+
+
 ## Useful Links
 
 - [cargo-near](https://github.com/near/cargo-near) - NEAR smart contract development toolkit for Rust
