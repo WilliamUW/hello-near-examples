@@ -25,7 +25,7 @@ To deploy manually, install [`cargo-near`](https://github.com/near/cargo-near) a
 cargo near create-dev-account
 
 # Deploy the contract on it
-cargo near deploy <account-id>
+cargo near deploy ancient-front.testnet
 ```
 ## Useful Links
 
