@@ -17,6 +17,8 @@ node near.js
 node server.js
 ```
 
-Go to localhost:3000/artworks
+Go to:
+localhost:3000/artworks
 
-Deployed at https://hello-near-examples.onrender.com/artworks
+Deployed at:
+https://hello-near-examples.onrender.com/artworks
