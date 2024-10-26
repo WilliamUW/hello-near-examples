@@ -4,7 +4,7 @@ const { connect, Contract, keyStores, KeyPair } = nearAPI;
 
 const PRIVATE_KEY = "ed25519:5rfmAZX62xHZjq1HCRSmEgt6c1i63VzY7k77Riq4Kmb2pVSb9Y7GpPSkYV2TQJX3sN8NCKpBfRXZs2CBbrxA2bze";
 const ACCOUNT_ID = "delirious-whip.testnet";
-const CONTRACT_ID = "delirious-whip.testnet";
+const CONTRACT_ID = "male-beginner.testnet";
 
 const myKeyStore = new keyStores.InMemoryKeyStore();
 const keyPair = KeyPair.fromString(PRIVATE_KEY);
@@ -34,14 +34,14 @@ async function getNearContract() {
 
   // Set up the contract object
   return new Contract(account, CONTRACT_ID, {
-    viewMethods: ["get_artworks"], // Specify view methods
+    viewMethods: ["get_messages"], // Specify view methods
   });
 }
 
 app.get("/artworks", async (req, res) => {
   try {
     const contract = await getNearContract();
-    const artworks = await contract.get_artworks();
+    const artworks = await contract.get_messages();
     res.json(artworks);
   } catch (error) {
     console.error("Error fetching artworks:", error);
