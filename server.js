@@ -2,8 +2,9 @@ const express = require("express");
 const nearAPI = require("near-api-js");
 const { connect, Contract, keyStores, KeyPair } = nearAPI;
 
-const PRIVATE_KEY = "ed25519:5rfmAZX62xHZjq1HCRSmEgt6c1i63VzY7k77Riq4Kmb2pVSb9Y7GpPSkYV2TQJX3sN8NCKpBfRXZs2CBbrxA2bze";
-const ACCOUNT_ID = "delirious-whip.testnet";
+const PRIVATE_KEY =
+  "ed25519:5vXPCRENf1oUHJFCK5Dt3o3hiswrPNuzPTBekD4s646beRp26yTpU4WmmETE81gv7bvRgcgeM1hZKkVCg3iStBf1";
+const ACCOUNT_ID = "male-beginner.testnet";
 const CONTRACT_ID = "male-beginner.testnet";
 
 const myKeyStore = new keyStores.InMemoryKeyStore();
@@ -32,15 +33,35 @@ async function getNearContract() {
   // Get the account object
   const account = await nearConnection.account(ACCOUNT_ID);
 
-  // Set up the contract object
-  return new Contract(account, CONTRACT_ID, {
-    viewMethods: ["get_messages"], // Specify view methods
+  // Get the contract object
+  const contract = new nearAPI.Contract(account, CONTRACT_ID, {
+    viewMethods: ["get_messages"], // Your view methods here
+    changeMethods: ["add_message"], // Your change methods here
   });
+
+  return { contract, account };
 }
 
-app.get("/artworks", async (req, res) => {
+app.get("/add_message", async (req, res) => {
   try {
-    const contract = await getNearContract();
+    const { contract, account } = await getNearContract();
+
+    // Call the contract's method with the appropriate account as the signer
+    const result = await contract.add_message({
+      args: { text: "hi" },
+      signerAccount: account,
+    });
+
+    console.log("Message added successfully:", result);
+  } catch (error) {
+    console.error("Error fetching artworks:", error);
+    res.status(500).json({ error: "Failed to fetch artworks" });
+  }
+});
+
+app.get("/get_messages", async (req, res) => {
+  try {
+    const { contract, account } = await getNearContract();
     const artworks = await contract.get_messages();
     res.json(artworks);
   } catch (error) {
