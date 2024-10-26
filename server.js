@@ -61,7 +61,7 @@ app.get("/add_message", async (req, res) => {
 
 app.get("/get_messages", async (req, res) => {
   try {
-    const { contract, account } = await getNearContract();
+    const { contract } = await getNearContract();
     const artworks = await contract.get_messages();
     res.json(artworks);
   } catch (error) {
